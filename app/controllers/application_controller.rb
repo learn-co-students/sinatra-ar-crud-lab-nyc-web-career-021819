@@ -15,6 +15,7 @@ class ApplicationController < Sinatra::Base
 
   #who all articles
   get '/articles' do
+    @articles = Article.all
     erb :index
   end
 
@@ -25,26 +26,28 @@ class ApplicationController < Sinatra::Base
 
   #post new article to arcticles
   post '/articles' do
+    @article = Article.create(title: params[:title], content: params[:content])
+    @articles = Article.all
     erb :index
   end
 
-  #show specific article id
-  get '/articles/:id' do
-    erb :show
-  end
+  # #show specific article id
+  # get '/articles/:id' do
+  #   erb :show
+  # end
 
-  #edit page for article to edit
-  get '/articles/:id/edit' do
-    erb :edit
-  end
+  # #edit page for article to edit
+  # get '/articles/:id/edit' do
+  #   erb :edit
+  # end
 
-  #patch edits
-  patch '/articles/:id' do
-    erb :show
-  end
+  # #patch edits
+  # patch '/articles/:id' do
+  #   erb :show
+  # end
 
-  #delete article
-  post '/articles/:id/delete' do
-    erb :delete
-  end
+  # #delete article
+  # post '/articles/:id/delete' do
+  #   erb :delete
+  # end
 end
