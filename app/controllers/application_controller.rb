@@ -25,21 +25,26 @@ class ApplicationController < Sinatra::Base
 
   #post new article to arcticles
   post '/articles' do
+    erb :index
   end
 
   #show specific article id
   get '/articles/:id' do
+    erb :show
   end
 
   #edit page for article to edit
   get '/articles/:id/edit' do
+    erb :edit
   end
 
   #patch edits
   patch '/articles/:id' do
+    erb :show
   end
 
   #delete article
   post '/articles/:id/delete' do
+    erb :delete
   end
 end
