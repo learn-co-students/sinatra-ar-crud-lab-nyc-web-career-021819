@@ -1,0 +1,6 @@
+<h1>INDEX</h1>
+<%Article.all.each do |article|%>
+<ul>
+<strong><li>Article: <%=article.title%></li></strong>
+<li>Content: <%=article.content%></li></ul>
+<%end%>
