@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
 
 #index
   get '/articles' do
-    @articles = Article.all
+    @articles = Article.all.each {|article| article.title}
     erb :index
   end
 
@@ -19,8 +19,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/articles' do
-    # binding.pry
-    @article = Article.create(:title => params[:title], :content=> params[:content])
+
+    @article = Article.create(params)
     redirect to "/articles/#{@article.id}"
   end
 
@@ -41,7 +41,8 @@ class ApplicationController < Sinatra::Base
 
 #patch
 
-  patch 'articles/:id' do
+  patch '/articles/:id' do
+
     @article = Article.find(params[:id])
     @article.title = params[:title]
     @article.content = params[:content]
@@ -51,9 +52,10 @@ class ApplicationController < Sinatra::Base
 
   #delete
 
-  delete 'articles/:id/delete' do
-    @articles = Article.find(params[:id])
-    @articles.delete
+  delete '/articles/:id/delete' do
+    @article = Article.find(params[:id])
+    @article.delete
+
     redirect to '/articles'
   end
 
