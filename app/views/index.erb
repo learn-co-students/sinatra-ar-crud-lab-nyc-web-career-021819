@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+    <%Article.all.each do |article|%>
+    <ul>
+      <li><h1>Article: <%=article.title%></h1></li>
+      <li>Content: <%= article.content%></li>
+    </ul>
+    <%end%>
+
+  </body>
+</html>
